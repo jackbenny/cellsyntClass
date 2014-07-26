@@ -1,5 +1,5 @@
 <?php
-class CellSynt
+class Cellsynt
 {
     public $username;
     public $password;
@@ -25,7 +25,7 @@ class CellSynt
     }
 }
 
-$SMS = new CellSynt("jake", "testpw", "numeric", "123456666");
-print $SMS->sendMsg("Detta är mitt SMS!") . "\n"; 
+$MySMS = new Cellsynt("jake", "testpw", "numeric", "123456666");
+print $MySMS->sendMsg("Detta är mitt SMS!") . "\n"; 
 
 ?>
