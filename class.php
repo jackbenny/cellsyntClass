@@ -33,11 +33,13 @@ class Cellsynt
     public $phone;
     public $concat;
     public $charset;
+    public $type;
+    public $expiry;
     public $msg;
 
     public function __construct($username, $password, $origType = "alpha",
                                 $originator = "Cellsynt", $concat = 6,
-                                $charset = "UTF-8")
+                                $charset = "UTF-8", $type = "text")
     {
         $this->username = $username;
         $this->password = $password;
@@ -45,13 +47,17 @@ class Cellsynt
         $this->originator = $originator;
         $this->concat = $concat;
         $this->charset = $charset;
+        $this->type = $type;
     }
 
-    public function sendSMS($phoneNr, $msg)
+    public function sendSMS($phoneNr, $msg, $expiry = "")
     {
         $this->msg = $msg;
         $this->phoneNr = $phoneNr;
-        $url = "http://se-1.cellsynt.net/sms.php?username=$this->username&password=$this->password&destination=$this->phoneNr&originatortype=$this->origType&originator=$this->originator&allowconcat=$this->concat&charset=$this->charset&text=$this->msg";
+        $this->expiry = $expiry;
+        
+        $url = "http://se-1.cellsynt.net/sms.php?username=$this->username&password=$this->password&destination=$this->phoneNr&originatortype=$this->origType&originator=$this->originator&allowconcat=$this->concat&charset=$this->charset&type=$this->type&expiry=$this->expiry&text=$this->msg";
+
         $urlFormatted = preg_replace("/\s/", "%20", $url);
         $ch = curl_init($urlFormatted);
         curl_setopt($ch, CURLOPT_HEADER, 0);
