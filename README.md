@@ -34,6 +34,9 @@ Parameters for the sendSMS function in order:
  * message (required)
  * expiry date (optional, Unix Timestamp when message should expire)
 
+## Requirements ##
+The class requires PHP5 and the PHP5 cURL module (php5-curl on Debian systems).
+
 ## Copyright ##
 This class is written by Jack-Benny Persson and released under GNU GPL
 version 2. 
