@@ -19,6 +19,8 @@
 
 
 /* 
+    Version 0.1
+
     Usage example:
     $MySMS = new Cellsynt("myuser", "mYpaSS", "alpha", "Test");
     print $MySMS->sendSMS("0046701234567", "This is my SMS!");
