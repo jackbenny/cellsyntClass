@@ -56,12 +56,23 @@ class Cellsynt
         $this->phoneNr = $phoneNr;
         $this->expiry = $expiry;
         
-        $url = "http://se-1.cellsynt.net/sms.php?username=$this->username&password=$this->password&destination=$this->phoneNr&originatortype=$this->origType&originator=$this->originator&allowconcat=$this->concat&charset=$this->charset&type=$this->type&expiry=$this->expiry&text=$this->msg";
+        $params = array ("username" => "$this->username",
+                         "password" => "$this->password",
+                         "destination" => "$this->phoneNr",
+                         "originatortype" => "$this->origType",
+                         "originator" => "$this->originator",
+                         "allowconcat" => "$this->concat",
+                         "charset" => "$this->charset",
+                         "type" => "$this->type",
+                         "expiry" => "$this->expiry",
+                         "text" => "$this->msg");
 
-        $urlFormatted = preg_replace("/\s/", "%20", $url);
-        $ch = curl_init($urlFormatted);
+        $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, "https://se-1.cellsynt.net/sms.php");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, (http_build_query($params)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $status = curl_exec($ch);
         curl_close($ch);
         return $status;
