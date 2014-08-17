@@ -19,7 +19,7 @@
 
 
 /* 
-    Version 0.1.1
+    Version 0.2
 
     Usage example:
     $MySMS = new Cellsynt("myuser", "mYpaSS", "alpha", "Test");
@@ -28,18 +28,18 @@
 
 class Cellsynt
 {
-    public $username;
-    public $password;
-    public $origType;
-    public $originator;
-    public $phone;
-    public $concat;
-    public $charset;
-    public $type;
-    public $expiry;
-    public $msg;
+    private $username;
+    private $password;
+    private $origType;
+    private $originator;
+    private $phone;
+    private $concat;
+    private $charset;
+    private $type;
+    private $expiry;
+    private $msg;
 
-    public function __construct($username, $password, $origType = "alpha",
+    function __construct($username, $password, $origType = "alpha",
                                 $originator = "Cellsynt", $concat = 6,
                                 $charset = "UTF-8", $type = "text")
     {
@@ -52,7 +52,7 @@ class Cellsynt
         $this->type = $type;
     }
 
-    public function sendSMS($phoneNr, $msg, $expiry = "")
+    function sendSMS($phoneNr, $msg, $expiry = "")
     {
         $this->msg = $msg;
         $this->phoneNr = $phoneNr;
